@@ -8,27 +8,29 @@
 * bobby@simplyearl.com
 **/
 define(function (require, exports, module) {
-    "use strict";
+  "use strict";
 
-    var CommandManager = brackets.getModule("command/CommandManager"),
-        Menus = brackets.getModule("command/Menus"),
-		    PreferencesManager = brackets.getModule("preferences/PreferencesManager"),
-    	  prefs = PreferencesManager.getExtensionPrefs("tallerWorkingFiles"),
-		    menu = Menus.getMenu(Menus.AppMenuBar.VIEW_MENU),
-		    commandId = 'bobbyearl.taller-working-files',
-		    prefKey = 'taller';
-	
-	  // Create our handler
-    CommandManager.register("Taller Working Files", commandId, function() {
-		  prefs.set(prefKey, !prefs.get(prefKey));
-		  prefs.save();
-	  });
-	
-	  // Add our item to the menu
-    menu.addMenuItem(commandId);
-	
-	// Set the state of the working files area when our preference is changed
-	prefs.definePreference(prefKey, 'boolean', 'false').on('change', function() {
-		$('#open-files-container').css('max-height', prefs.get(prefKey) ? '' : '200px');
-	});
+  var CommandManager = brackets.getModule("command/CommandManager"),
+      Menus = brackets.getModule("command/Menus"),
+      PreferencesManager = brackets.getModule("preferences/PreferencesManager"),
+      prefs = PreferencesManager.getExtensionPrefs("tallerWorkingFiles"),
+      menu = Menus.getMenu(Menus.AppMenuBar.VIEW_MENU),
+      commandId = 'bobbyearl.taller-working-files',
+      prefKey = 'taller';
+
+    // Create our handler
+  CommandManager.register("Taller Working Files", commandId, function() {
+    prefs.set(prefKey, !prefs.get(prefKey));
+    prefs.save();
+  });
+
+    // Add our item to the menu
+  menu.addMenuItem(commandId);
+
+  // Set the state of the working files area when our preference is changed
+  prefs.definePreference(prefKey, 'boolean', 'false').on('change', function() {
+    var on = prefs.get(prefKey);
+    CommandManager.get(commandId).setChecked(on);
+    $('#open-files-container').css('max-height', on ? 'none' : '200px');
+  });
 });
