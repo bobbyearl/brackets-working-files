@@ -1,0 +1,12 @@
+{
+    "name": "bobbyearl.taller-working-files",
+    "title": "Taller Working Files",
+    "description": "Brackets extension to remove the max-height rule on Working Files.",
+    "homepage": "https://github.com/simplyearl/brackets-working-files",
+    "version": "1.0.0",
+    "author": "Bobby Earl <bobby@simplyearl.com> (http://bobbyearl.com)",
+    "license": "MIT",
+    "engines": {
+        "brackets": ">=0.36.0"
+    }
+}
