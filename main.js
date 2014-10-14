@@ -31,6 +31,6 @@ define(function (require, exports, module) {
   prefs.definePreference(prefKey, 'boolean', 'false').on('change', function() {
     var on = prefs.get(prefKey);
     CommandManager.get(commandId).setChecked(on);
-    $('#open-files-container').css('max-height', on ? 'none' : '200px');
+    $('.open-files-container').css('max-height', on ? 'none' : '200px');
   });
 });
